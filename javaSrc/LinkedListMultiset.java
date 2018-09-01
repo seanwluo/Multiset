@@ -5,6 +5,7 @@ public class LinkedListMultiset<T> extends Multiset<T>
 {
 	private Node mHead = null;
 	private int mLength = 0;
+	private int found = 0;
 
 
 
@@ -14,9 +15,8 @@ public class LinkedListMultiset<T> extends Multiset<T>
 		if(mHead == null){
 			mHead = node;
 		}else{
-			node.setNext(mHead);
+			node.setmNext(mHead);
 			mHead = node;
-
 		}
 		mLength ++;
 	} // end of add()
@@ -103,27 +103,6 @@ public class LinkedListMultiset<T> extends Multiset<T>
 
 
 
- class Node<T> {
-    private T item;
-    private Node mNext;
-    public Node(T item){
-        this.item = item;
-        this.mNext = null;
-    }
 
-    public T getItem(){
-        return item;
-    }
-    public Node<T> getmNext(){
-        return mNext;
-    }
-
-    public void setItem(T item){
-        this.item = item;
-    }
-
-    public void setNext(Node mNext){
-        this.mNext = mNext;
-    }
 
 }
