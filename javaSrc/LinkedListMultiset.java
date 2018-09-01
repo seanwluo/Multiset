@@ -3,17 +3,25 @@ import java.util.*;
 
 public class LinkedListMultiset<T> extends Multiset<T>
 {
-	private Node mHead = null;
-	private int mLength = 0;
-	private int found = 0;
+	private Node<T> mHead;
+	private Node<T> mTail;
+	private int mLength;
 
 
 
+
+	public LinkedListMultiset(){
+	    mHead = null;
+	    mTail = null;
+	    mLength = 0;
+
+    }
 
     public void add(T item) {
 		Node<T> node = new Node<T>(item);
 		if(mHead == null){
 			mHead = node;
+			mTail = node;
 		}else{
 			node.setmNext(mHead);
 			mHead = node;
@@ -24,39 +32,30 @@ public class LinkedListMultiset<T> extends Multiset<T>
 	
 	public int search(T item) {
 		Node currNode = mHead;
-		int sum = 0;
+		int amount = 0;
+
 		for(int i = 0;i < mLength;i++){
 			if(currNode.getItem().equals(item)){
-				sum++;
+				amount++;
 			}
 			currNode = currNode.getmNext();
-	}
-		return sum;
+		}
+		currNode.setAmount(amount);
 
-		
+		return amount;
 		// default return, please override when you implement this method
 
 	} // end of add()
 	
 	
 	public void removeOne(T item) {
-		Node perNode = mHead;
-		if(mHead.getItem() == item){
-			mHead = mHead.getmNext();
-			mLength--;
-		}
-		//if its first one,just delete move mead to next;
-		else{
-			for(int i = 0;i < mLength-1;i++){
-			Node currNode = perNode.getmNext();
-				if(currNode.getItem() == item){
-					perNode.setNext(currNode.getmNext());
-					mLength--;
-					break;
-				}
-				perNode = perNode.getmNext();
-			}
-		}
+		Node<T> currNode = mHead;
+		for(int i = 0;i < mLength;i++){
+		    if(currNode.getItem().equals(item)){
+
+            }
+
+        }
 
 	} // end of removeOne()
 	

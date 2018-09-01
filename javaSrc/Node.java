@@ -2,6 +2,7 @@ public class Node<T> {
     private T item;
     private Node<T> mNext;
     private Node<T> mPrevious;
+    private int amount;
 
     public Node (T item){
         this.item = item;
@@ -15,6 +16,10 @@ public class Node<T> {
         this.mPrevious = mPrevious;
     }
 
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
     public Node<T> getmNext() {
         return mNext;
     }
@@ -22,4 +27,13 @@ public class Node<T> {
     public Node<T> getmPrevious() {
         return mPrevious;
     }
+
+    public T getItem() {
+        return item;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
 }
