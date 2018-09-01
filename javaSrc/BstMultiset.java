@@ -18,31 +18,33 @@ public class BstMultiset<T extends Comparable<T>> extends Multiset<T>
 			root=newNode;    // the fiset case:when the root node is null or the bst is empty,then lets set the root is the added node
 		}else {
 			Node<T> currentnode=root;
-			boolean done=false;
-			
-			while(true) {
-				if(item.equals(currentnode.getValue())) {
-					currentnode.addLeaf();//the totall number of nodes add 1more;
-					done=true;
-			}else if(item.compareTo(currentnode.getValue())<0){
+			boolean done=true;
+		
+			for(;done=true;) {
+				
+				if(item.equals(currentnode.getValue())){
+					currentnode.addLeaf();
+					break;
+				}else if(item.compareTo(currentnode.getValue())<0) {
 					if(currentnode.getLeftchild()==null) {
-						currentnode.setLeftchild(newNode);//if the added value is less then current value,the add to leftchild
-						done=true;
+						currentnode.setLeftchild(newNode);
+						break;
 					}else {
 						currentnode=currentnode.getLeftchild();
-						done=false;
+						done=true;
 					}
-			}else if(item.compareTo(currentnode.getValue())>0) {
-				if(currentnode.getRightchild()==null) {
-					currentnode.setRightchild(newNode);
-					done=true;
-				}else {
-					currentnode=currentnode.getRightchild();
-					done=false;
+				}else if(item.compareTo(currentnode.getValue())>0) {
+					if(currentnode.getRightchild()==null) {
+						currentnode.setRightchild(newNode);
+						break;
+					}else {
+						currentnode=currentnode.getRightchild();
+						done=true;
+					}
 				}
-			}	
+			}
+				
 		}
-	}
 		
 		// Implement me!
 	} // end of add()
