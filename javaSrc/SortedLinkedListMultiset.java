@@ -10,7 +10,7 @@ public class SortedLinkedListMultiset<T extends Comparable<T>> extends Multiset<
 	
 	
 	public void add(T item) {
-        SortNode<T> node = new SortNode<T>(item);
+        SortNode<T> node = new SortNode(item);
         SortNode<T> perNode = mHead;
 
         if(mLength == 0){
