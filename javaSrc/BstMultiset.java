@@ -60,31 +60,38 @@ public class BstMultiset<T extends Comparable<T>> extends Multiset<T>
 			boolean done=false;
 			int found=0;
 			
-			while(!done) {
+			for(;done=false;) {
 				if(item.compareTo(currentNode.getValue())==0) {
 					found=currentNode.getCount();
-					done=true;
+					break;
 				}else if(item.compareTo(currentNode.getValue())<0) {
 					if(currentNode.getLeftchild()==null) {
-						done=true;
 						found=0;
+						break;
 					}else {
 						currentNode=currentNode.getLeftchild();
+						done=false;
 					}
 				}else if(item.compareTo(currentNode.getValue())>0) {
 					if(currentNode.getRightchild()==null) {
-							done=true;
+						found=0;
+						break;
 					}else {
-						currentNode=currentNode.getLeftchild();
+						currentNode=currentNode.getRightchild();
+						done=false;
 					}
-				}
+				}	
 			}
-			return 0;
+			return found;
+			}
+			
 		}
+			
+			
+			
 		
 		// default return, please override when you implement this method
-		
-	} // end of add()
+		// end of add()
 
 
 	public void removeOne(T item) {
