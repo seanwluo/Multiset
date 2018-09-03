@@ -3,48 +3,32 @@ import java.util.*;
 
 public class SortedLinkedListMultiset<T extends Comparable<T>> extends Multiset<T>
 {
-    private SortNode<T> mHead = null;
-    private int mLength = 0;
-	public SortedLinkedListMultiset() {
+    private Node<T> mHead;
+    private int mLength ;
+
+
+    public SortedLinkedListMultiset() {
+	    mHead = null;
+	    mLength = 0;
 	} // end of SortedLinkedListMultiset()
-	
-	
+
+
 	public void add(T item) {
-        SortNode<T> node = new SortNode(item);
-        SortNode<T> perNode = mHead;
-
-        if(mLength == 0){
+        Node<T> node = new Node(item);
+        if(mHead == null){
+            mHead = node;
+        }else{
+            node.setmNext(mHead);
             mHead = node;
         }
-        else if(mHead.getItem().compareTo(item) > 0 ){
-            node.setNext(mHead);
-            mHead = node;
-        }
-        //The new node item is the smallest one
-        else if(mHead.getItem().compareTo(item) < 0){
-            for(int i = 1;i < mLength-1;i++){
-                SortNode<T> currNode = perNode.getmNext();
-                if(currNode.getItem().compareTo(item) > 0){
-                    perNode.setNext(node);
-                    node.setNext(currNode);
-                    break;
-                    //node between smallest and biggest
-                }
-                perNode = perNode.getmNext();
-            }
-            perNode.getmNext().setNext(node);
-            //After loop, the largest one is the currNode,so set the node after currNode is ok;
-        }
-
-
-        mLength++;
-
+        mLength ++;
+        this.sortList();
 	}
 	// end of add()
 	
 	
 	public int search(T item) {
-	    SortNode<T> node = mHead;
+	    Node<T> node = mHead;
 	    int sum = 0;
 	    for(int i = 0;i < mLength;i++){
 	        if(node.getItem() == item){
@@ -61,19 +45,20 @@ public class SortedLinkedListMultiset<T extends Comparable<T>> extends Multiset<
 	
 	
 	public void removeOne(T item) {
-	    SortNode<T> perNode = mHead;
-	    if(mHead.getItem() == item){
+	    Node<T> currNode = mHead;
+	    Node<T> perNode = null;
+ 	    if(mHead.getItem() == item){
 	        mHead = mHead.getmNext();
 	        mLength--;
         }else{
-            for(int i = 0;i < mLength;i++){
-	            SortNode<T> currNode = mHead.getmNext();
+           while (currNode.getmNext() != null){
+                perNode = currNode.getmPrevious();
                 if(currNode.getItem() == item){
-                    perNode.setNext(currNode.getmNext());
+                    perNode.setmNext(currNode.getmNext());
                     mLength--;
                     break;
                 }
-                perNode = perNode.getmNext();
+                currNode = currNode.getmNext();
             }
 
         }
@@ -82,37 +67,37 @@ public class SortedLinkedListMultiset<T extends Comparable<T>> extends Multiset<
 	
 	
 	public void removeAll(T item) {
-	    SortNode<T> perNode = mHead;
+	    Node<T> currNode = mHead;
+	    Node<T> perNode = null;
 	    int number = this.getNumber(item);
 
 	    if(mHead.getItem() == item){
-	       for(int i = 0;i < number;i++){
-	           perNode = perNode.getmNext();
-           }
-           mHead = perNode.getmNext();
+	        for(int i = 0;i < number;i++){
+	           currNode = currNode.getmNext();
+	        }
+	        mHead = currNode.getmNext();
 	       //get the number and loop for the number,then move all.
         }
         else{
             for(int j = 0;j < mLength;j++){
-	            SortNode<T> currNode = perNode.getmNext();
+	            perNode = currNode.getmPrevious();
                 if(currNode.getItem() == item){
                     for(int t = 0;t < number;t++){
                         currNode = currNode.getmNext();
-                        perNode.setNext(currNode.getmNext());
+                        perNode.setmNext(currNode.getmNext());
                     }
                 }
-                perNode = perNode.getmNext();
+                currNode = currNode.getmNext();
             }
         }
         mLength -= number;
 
-		// Implement me!
 	} // end of removeAll()
 
 
 
     private int getNumber(T item){
-	    SortNode<T> currNode = mHead;
+	    Node<T> currNode = mHead;
 	    int number = 0;
 	    while (currNode != null){
 	        if(currNode.getItem() == item){
@@ -124,7 +109,7 @@ public class SortedLinkedListMultiset<T extends Comparable<T>> extends Multiset<
     }
 	
 	public void print(PrintStream out) {
-	    SortNode<T> currNode = mHead;
+	    Node<T> currNode = mHead;
 	    while (currNode != null){
 	        String itemName = currNode.getItem().toString();
             int itemNumber = this.getNumber(currNode.getItem());
@@ -135,35 +120,26 @@ public class SortedLinkedListMultiset<T extends Comparable<T>> extends Multiset<
 
 
 
-	} // end of print()
+	}// end of print()
 
+    private void sortList(){
+        Node<T> nextNode = null;
+	    T tmp;
+	    Node<T> currNode = mHead;
+	    while (currNode.getmNext() != null){
+	        nextNode = currNode.getmNext();
+	        while (nextNode != null){
+	            if(currNode.getItem().compareTo(nextNode.getItem()) > 0){
+	                tmp = currNode.getItem();
+	                currNode.setItem(nextNode.getItem());
+	                nextNode.setItem(tmp);
+                }
+                nextNode = nextNode.getmNext();
+            }
+            currNode = currNode.getmNext();
+        }
+    }
 
 }
 
-class SortNode<T> {
-    private T item;
-    private SortNode mNext;
-    public SortNode(T item){
-        this.item = item;
-        this.mNext = null;
-    }
-
-    public T getItem(){
-        return item;
-    }
-    public SortNode getmNext(){
-        return mNext;
-    }
-
-    public void setItem(T item){
-        this.item = item;
-    }
-
-    public void setNext(SortNode mNext){
-        this.mNext = mNext;
-    }
-
-
-
-}
 // end of class SortedLinkedListMultiset

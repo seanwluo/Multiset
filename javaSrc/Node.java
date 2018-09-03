@@ -20,6 +20,10 @@ public class Node<T> {
         this.amount = amount;
     }
 
+    public void setItem(T item) {
+        this.item = item;
+    }
+
     public Node<T> getmNext() {
         return mNext;
     }

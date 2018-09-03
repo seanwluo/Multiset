@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -19,14 +20,16 @@ public class DataGenerator {
         return data;
     }
 
-    public void addData(Multiset<String> multiset){
+    public void addData(Multiset<String> multiset) throws IOException {
         while(this.getData().size() < 1000){
             for(int i = 2;i < 6;i++){
                 String str = this.getRandom(i);
                 this.getData().add(str);
                 multiset.add(str);
             }
+
         }
+        this.textWriter(this.getData());
     }
 
     public void romoveOneData(Multiset<String> multiset){
@@ -49,5 +52,22 @@ public class DataGenerator {
         String str = this.getData().get(index);
         multiset.search(str);
 
+    }
+
+    private void textWriter(ArrayList<String> data) throws IOException {
+        File testFile = new File("D:\\Multiset\\javaSrc\\TestFile.txt");
+        BufferedWriter out = new BufferedWriter(new FileWriter(testFile));
+        try{
+            for (String word : data) {
+                out.write(word);
+                out.write("\n");
+                out.flush();
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }finally {
+            out.close();
+
+        }
     }
 }

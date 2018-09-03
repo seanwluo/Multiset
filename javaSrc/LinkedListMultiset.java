@@ -100,15 +100,15 @@ public class LinkedListMultiset<T extends Comparable<T>> extends Multiset<T>
 	public void print(PrintStream out) {
 	    Node currNode = mHead;
 	    for(int i = 0;i < mLength;i++){
+	    	Node nextNode = currNode.getmNext();
 	        for(int j =i+1; j < mLength;j++){
-	        	Node nextNode = currNode.getmNext();
 	            if(currNode.getItem() == nextNode.getItem()){
 	                String itemName = currNode.getItem().toString();
 	                int itemSum = 0;
 	                itemSum++;
                     System.out.println(itemName+"|"+itemSum);
                 }
-	            nextNode = nextNode.getmNext();
+	            nextNode = currNode.getmNext();
 
 
             }
