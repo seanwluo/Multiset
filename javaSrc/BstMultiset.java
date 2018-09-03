@@ -86,10 +86,6 @@ public class BstMultiset<T extends Comparable<T>> extends Multiset<T>
 			}
 			
 		}
-			
-			
-			
-		
 		// default return, please override when you implement this method
 		// end of add()
 
@@ -129,7 +125,7 @@ public class BstMultiset<T extends Comparable<T>> extends Multiset<T>
 	public void removeAll(T item) {
 		// Implement me!
 		if(root!=null) {
-			root=myDelete(root.item);
+			root=myDelete(root,item);
 		}
 	} // end of removeAll()
 	private Node<T> myDelete(Node<T> point, T item) {
