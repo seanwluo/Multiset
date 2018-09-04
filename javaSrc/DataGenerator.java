@@ -17,7 +17,7 @@ public class DataGenerator {
         return sb.toString();
     }
 
-    public ArrayList<String> getData(){
+    private ArrayList<String> getData(){
         return data;
     }
 
@@ -40,7 +40,7 @@ public class DataGenerator {
         System.out.println("TextFile Write time:"+(endTime-startTime)+"ns");
     }
 
-    public void romoveOneData(Multiset<String> multiset){
+    public void removeOneData(Multiset<String> multiset){
         Random random = new Random();
         int index = random.nextInt(this.getData().size()-1);
         String str = this.getData().get(index);
@@ -75,14 +75,15 @@ public class DataGenerator {
         multiset.search(str);
         long endTime = System.nanoTime();
 
-        System.out.println("Remove All Data time:"+(endTime-startTime)+"ns");
+        System.out.println("Search Data time:"+(endTime-startTime)+"ns");
         System.out.println(str);
 
     }
 
     public void mergeTest(Multiset<String> multiset){
         String[] index = {"A","R","RA"};
-        Random random = new Random()
+        Random random = new Random();
+
 
     }
 

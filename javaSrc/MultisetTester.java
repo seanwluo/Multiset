@@ -176,8 +176,9 @@ public class MultisetTester
         SortedLinkedListMultiset<String> sortList = new SortedLinkedListMultiset<>();
         DataGenerator dataGenerator = new DataGenerator();
         dataGenerator.addData(linkedList);
-        dataGenerator.romoveOneData(linkedList);
+        dataGenerator.removeOneData(linkedList);
         dataGenerator.removeAllData(linkedList);
+        dataGenerator.searchData(linkedList);
 
 
     }
