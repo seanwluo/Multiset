@@ -48,17 +48,13 @@ public class LinkedListMultiset<T extends Comparable<T>> extends Multiset<T>
 		Node<T> currNode = mHead;
 		for(int i = 0;i < mLength;i++){
 			Node<T> nextNode = currNode.getmNext();
+			Node<T> preNode = currNode.getmPrevious();
 		    if(item.compareTo(currNode.getItem()) == 0){
 		        if(currNode == mHead){
-		            currNode.getmNext().setmPrevious(null);
 		            mHead = currNode.getmNext();
 		            mLength--;
 		            break;
-                }else if(currNode.getmNext() == null){
-		            currNode.getmPrevious().setmNext(null);
-		            mLength--;
-		            break;
-                }else{
+                }else if(currNode.getmNext() != null){
 		        	currNode.setItem(nextNode.getItem());
 		        	currNode.setmNext(nextNode.getmNext());
 		            mLength--;

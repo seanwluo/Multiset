@@ -22,6 +22,7 @@ public class DataGenerator {
     }
 
     public void addData(Multiset<String> multiset) throws IOException {
+        final String fileName = "D:\\Multiset\\javaSrc\\TestFile.txt";
         long addDataStartTime = System.nanoTime();
         while(this.getData().size() < dataSize){
             for(int i = 2;i < 6;i++){
@@ -35,7 +36,7 @@ public class DataGenerator {
         System.out.println("Add Data Time:"+(addDataEndTime-addDataStartTime)+"ns");
 
         long startTime = System.nanoTime();
-        this.textWriter(this.getData());
+        this.textWriter(this.getData(),fileName);
         long endTime = System.nanoTime();
         System.out.println("TextFile Write time:"+(endTime-startTime)+"ns");
     }
@@ -80,15 +81,60 @@ public class DataGenerator {
 
     }
 
-    public void mergeTest(Multiset<String> multiset){
-        String[] index = {"A","R","RA"};
+    public void mergeTest(Multiset<String> multiset) throws IOException {
+        final String fileName = "D:\\Multiset\\javaSrc\\MergeTextFile.txt";
+        String[] command = {"A","R","RA"};
         Random random = new Random();
+        ArrayList<String> mergeData = new ArrayList<>();
+        ArrayList<String> removeData = new ArrayList<>();
 
-
+        long startTime = System.nanoTime();
+        for(int i = 0;i<dataSize;i++){
+            int index = random.nextInt(2);
+            if( "A".equals(command[index])){
+                for(int j = 2;j < 6;j++){
+                    String str = this.getRandom(i);
+                    mergeData.add(str);
+                    multiset.add(str);
+                }
+            }else if("R".equals(command[index])) {
+                if (mergeData.size() > 1) {
+                    Random random1 = new Random();
+                    int index1 = random1.nextInt(mergeData.size()-1);
+                    String str1 = mergeData.get(index1);
+                    multiset.removeOne(str1);
+                    removeData.add(str1);
+                } else {
+                    for(int j = 2;j < 6;j++) {
+                        String str = this.getRandom(i);
+                        mergeData.add(str);
+                        multiset.add(str);
+                    }
+                }
+            }else if("RA".equals(command[index])){
+                if(mergeData.size()>1){
+                    Random random2 = new Random();
+                    int index2 = random2.nextInt(mergeData.size());
+                    String str2 = mergeData.get(index2);
+                    multiset.removeAll(str2);
+                    removeData.add(str2);
+                }else {
+                    for(int j = 2;j < 6;j++) {
+                        String str = this.getRandom(i);
+                        mergeData.add(str);
+                        multiset.add(str);
+                    }
+                }
+            }
+        }
+        long endTime = System.nanoTime();
+        System.out.println("Test time:"+(endTime-startTime)+"ns");
+        this.textWriter(removeData,fileName);
     }
 
-    private void textWriter(ArrayList<String> data) throws IOException {
-        File testFile = new File("D:\\Multiset\\javaSrc\\TestFile.txt");
+
+    private void textWriter(ArrayList<String> data,String path) throws IOException {
+        File testFile = new File(path);
         BufferedWriter out = new BufferedWriter(new FileWriter(testFile));
         try{
             for (String word : data) {
