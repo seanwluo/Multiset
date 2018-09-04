@@ -46,15 +46,16 @@ public class SortedLinkedListMultiset<T extends Comparable<T>> extends Multiset<
 	
 	public void removeOne(T item) {
 	    Node<T> currNode = mHead;
-	    Node<T> perNode = null;
+	    Node<T> nextNode = null;
  	    if(mHead.getItem() == item){
 	        mHead = mHead.getmNext();
 	        mLength--;
         }else{
            while (currNode.getmNext() != null){
-                perNode = currNode.getmPrevious();
+                nextNode = currNode.getmNext();
                 if(currNode.getItem() == item){
-                    perNode.setmNext(currNode.getmNext());
+                    currNode.setItem(nextNode.getItem());
+                    currNode.setmNext(nextNode.getmNext());
                     mLength--;
                     break;
                 }
@@ -68,7 +69,7 @@ public class SortedLinkedListMultiset<T extends Comparable<T>> extends Multiset<
 	
 	public void removeAll(T item) {
 	    Node<T> currNode = mHead;
-	    Node<T> perNode = null;
+	    Node<T> nextNode = null;
 	    int number = this.getNumber(item);
 
 	    if(mHead.getItem() == item){
@@ -80,11 +81,11 @@ public class SortedLinkedListMultiset<T extends Comparable<T>> extends Multiset<
         }
         else{
             for(int j = 0;j < mLength;j++){
-	            perNode = currNode.getmPrevious();
+	            nextNode = currNode.getmNext();
                 if(currNode.getItem() == item){
                     for(int t = 0;t < number;t++){
-                        currNode = currNode.getmNext();
-                        perNode.setmNext(currNode.getmNext());
+                        currNode.setItem(nextNode.getItem());
+                        currNode.setmNext(nextNode.getmNext());
                     }
                 }
                 currNode = currNode.getmNext();
@@ -123,9 +124,9 @@ public class SortedLinkedListMultiset<T extends Comparable<T>> extends Multiset<
 	}// end of print()
 
     private void sortList(){
-        Node<T> nextNode = null;
-	    T tmp;
 	    Node<T> currNode = mHead;
+	    T tmp;
+        Node<T> nextNode = null;
 	    while (currNode.getmNext() != null){
 	        nextNode = currNode.getmNext();
 	        while (nextNode != null){

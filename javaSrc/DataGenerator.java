@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class DataGenerator {
     private ArrayList<String> data = new ArrayList<>();
+    private final int dataSize = 10000;
 
     private String getRandom(int length){
         String str = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
@@ -21,7 +22,8 @@ public class DataGenerator {
     }
 
     public void addData(Multiset<String> multiset) throws IOException {
-        while(this.getData().size() < 100000){
+        long addDataStartTime = System.nanoTime();
+        while(this.getData().size() < dataSize){
             for(int i = 2;i < 6;i++){
                 String str = this.getRandom(i);
                 this.getData().add(str);
@@ -29,28 +31,58 @@ public class DataGenerator {
             }
 
         }
+        long addDataEndTime = System.nanoTime();
+        System.out.println("Add Data Time:"+(addDataEndTime-addDataStartTime)+"ns");
+
+        long startTime = System.nanoTime();
         this.textWriter(this.getData());
+        long endTime = System.nanoTime();
+        System.out.println("TextFile Write time:"+(endTime-startTime)+"ns");
     }
 
     public void romoveOneData(Multiset<String> multiset){
-        Random random = new Random(this.getData().size());
-        int index = random.nextInt();
+        Random random = new Random();
+        int index = random.nextInt(this.getData().size()-1);
         String str = this.getData().get(index);
+
+        long startTime = System.nanoTime();
         multiset.removeOne(str);
+        long endTime = System.nanoTime();
+
+        System.out.println("Remove One Data time:"+(endTime-startTime)+"ns");
+        System.out.println(str);
     }
 
     public void removeAllData(Multiset<String> multiset){
-        Random random = new Random(this.getData().size());
-        int index = random.nextInt();
+        Random random = new Random();
+        int index = random.nextInt(this.getData().size()-1);
         String str = this.getData().get(index);
+
+        long startTime = System.nanoTime();
         multiset.removeAll(str);
+        long endTime = System.nanoTime();
+
+        System.out.println("Remove All Data time:"+(endTime-startTime)+"ns");
+        System.out.println(str);
     }
 
     public void searchData(Multiset<String> multiset){
-        Random random = new Random(this.getData().size());
-        int index = random.nextInt();
+        Random random = new Random();
+        int index = random.nextInt(this.getData().size()-1);
         String str = this.getData().get(index);
+
+        long startTime = System.nanoTime();
         multiset.search(str);
+        long endTime = System.nanoTime();
+
+        System.out.println("Remove All Data time:"+(endTime-startTime)+"ns");
+        System.out.println(str);
+
+    }
+
+    public void mergeTest(Multiset<String> multiset){
+        String[] index = {"A","R","RA"};
+        Random random = new Random()
 
     }
 
