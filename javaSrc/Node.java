@@ -1,4 +1,4 @@
-public class Node<T> {
+public class Node<T extends Comparable<T>> {
     private T item;
     private Node<T> mNext;
     private Node<T> mPrevious;

@@ -6,11 +6,11 @@ public class DataGenerator {
     private ArrayList<String> data = new ArrayList<>();
 
     private String getRandom(int length){
-        String str = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890";
+        String str = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
         StringBuffer sb = new StringBuffer();
         Random random = new Random();
         for(int i = 0;i<length;i++){
-            int num = random.nextInt(62);
+            int num = random.nextInt(52);
             sb.append(str.charAt(num));
         }
         return sb.toString();
@@ -21,7 +21,7 @@ public class DataGenerator {
     }
 
     public void addData(Multiset<String> multiset) throws IOException {
-        while(this.getData().size() < 1000){
+        while(this.getData().size() < 100000){
             for(int i = 2;i < 6;i++){
                 String str = this.getRandom(i);
                 this.getData().add(str);
@@ -70,4 +70,5 @@ public class DataGenerator {
 
         }
     }
+
 }

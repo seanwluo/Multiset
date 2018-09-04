@@ -33,7 +33,7 @@ public class LinkedListMultiset<T extends Comparable<T>> extends Multiset<T>
 		int amount = 0;
 
 		for(int i = 0;i < mLength;i++){
-			if(currNode.getItem().equals(item)){
+			if(currNode.getItem().compareTo(item) == 0){
 				amount++;
 			}
 			currNode = currNode.getmNext();
@@ -48,7 +48,7 @@ public class LinkedListMultiset<T extends Comparable<T>> extends Multiset<T>
 	public void removeOne(T item) {
 		Node<T> currNode = mHead;
 		for(int i = 0;i < mLength;i++){
-		    if(currNode.getItem().equals(item)){
+		    if(currNode.getItem().compareTo(item) == 0){
 		        if(currNode == mHead){
 		            currNode.getmNext().setmPrevious(null);
 		            mHead = currNode.getmNext();
@@ -75,7 +75,7 @@ public class LinkedListMultiset<T extends Comparable<T>> extends Multiset<T>
 	public void removeAll(T item) {
         Node<T> currNode = mHead;
         for(int i = 0;i < mLength;i++){
-            if(currNode.getItem().equals(item)){
+            if(currNode.getItem().compareTo(item) == 0){
                 if(currNode == mHead){
                     currNode.getmNext().setmPrevious(null);
                     mHead = currNode.getmNext();

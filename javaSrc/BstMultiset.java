@@ -206,7 +206,7 @@ public class BstMultiset<T extends Comparable<T>> extends Multiset<T>
 	
 	
 	private class Node<Y extends Comparable<Y>>{
-		//一个节点的基本元素，任何类型的值，相应的key。
+
 		private Y value;
 		private int count=0;
 		

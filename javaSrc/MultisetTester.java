@@ -34,7 +34,7 @@ public class MultisetTester
 	 * 
 	 * @throws IOException If there is an exception to do with I/O.
 	 */
-	public static void processOperations(BufferedReader inReader, PrintWriter searchOutWriter, Multiset<String> multiset) 
+	/*public static void processOperations(BufferedReader inReader, PrintWriter searchOutWriter, Multiset<String> multiset){}
 		throws IOException
 	{
 		String line;
@@ -109,16 +109,16 @@ public class MultisetTester
 			lineNum++;
 		}
 
-	} // end of processOperations() 
+	}*/ // end of processOperations()
 
 
 	/**
 	 * Main method.  Determines which implementation to test.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
-		// check number of command line arguments
-		if (args.length > 2 || args.length < 1) {
+        // check number of command line arguments
+		/*if (args.length > 2 || args.length < 1) {
 			System.err.println("Incorrect number of arguments.");
 			usage(progName);
 		}
@@ -169,6 +169,18 @@ public class MultisetTester
 			System.err.println(e.getMessage());
 		}
 
-	} // end of main()
+	}*/ // end of main()
+        LinkedListMultiset<String> linkedList = new LinkedListMultiset<>();
+        DataGenerator dataGenerator = new DataGenerator();
+        dataGenerator.addData(linkedList);
+        long startTime = System.currentTimeMillis();
+        dataGenerator.searchData(linkedList);
+        long endTime = System.currentTimeMillis();
+        System.out.println("Time consuming"+ (endTime-startTime)+"ms");
+    }
+}
 
-} // end of class MultisetTester
+
+
+
+
