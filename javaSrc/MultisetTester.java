@@ -170,16 +170,22 @@ public class MultisetTester
 		}
 
 	}*/ // end of main()
-        LinkedListMultiset<String> linkedList = new LinkedListMultiset<>();
-        DataGenerator dataGenerator = new DataGenerator();
-        dataGenerator.addData(linkedList);
-        long startTime = System.currentTimeMillis();
-        dataGenerator.searchData(linkedList);
-        long endTime = System.currentTimeMillis();
-        System.out.println("Time consuming"+ (endTime-startTime)+"ms");
+		BalTreeMultiset<String> Bst = new BalTreeMultiset<>();            //HasMultiset,BstMultiset,LinkedListMultiset,
+        DataGenerator dataGenerator = new DataGenerator();            //SortedLinkedListMultiset
+        long startwriting=System.currentTimeMillis();
+        
+        dataGenerator.addData(Bst);
+        
+        long writingtime=System.currentTimeMillis();
+        
+        long startsearch = System.currentTimeMillis();
+        dataGenerator.searchData(Bst);
+        long endsearch = System.currentTimeMillis();
+        System.out.println("comsuming time for writing data"+" "+ (writingtime-startwriting)+"ms");
+        System.out.println("Time consuming"+ " "+(endsearch-startsearch)+"ms"+"/"+(endsearch-startsearch)/1000+"s");   //endTime-startTime
     }
 }
-
+  
 
 
 
