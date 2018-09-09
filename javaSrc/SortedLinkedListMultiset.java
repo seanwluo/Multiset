@@ -17,12 +17,27 @@ public class SortedLinkedListMultiset<T extends Comparable<T>> extends Multiset<
         Node<T> node = new Node(item);
         if(mHead == null){
             mHead = node;
-        }else{
+        }else if (item.compareTo(mHead.getItem()) < 0){
+
             node.setmNext(mHead);
             mHead = node;
+        }else{
+            Node<T> nextNode = mHead.getmNext();
+            Node<T> perNode = mHead;
+            while (nextNode != null){
+                if(item.compareTo(nextNode.getItem()) < 0){
+                    break;
+                }
+                perNode = nextNode;
+                nextNode = nextNode.getmNext();
+
+            }
+
+            node.setmNext(perNode.getmNext());
+            perNode.setmNext(node);
         }
         mLength ++;
-        this.sortList();
+        //this.sortList();
 	}
 	// end of add()
 	
@@ -140,6 +155,46 @@ public class SortedLinkedListMultiset<T extends Comparable<T>> extends Multiset<
             currNode = currNode.getmNext();
         }
     }
+
+    /*private Node<T> getMiddle(){
+        Node<T> slow = null;
+        Node<T> fast = null;
+        slow = fast = mHead;
+        while (fast.getmNext() != null && fast.getmNext().getmNext() != null){
+            slow = slow.getmNext();
+            fast = fast.getmNext().getmNext();
+        }
+        return slow;
+    }
+
+    private Node<T> merge(Node<T> first,Node<T> second){
+        Node<T> dummyHead,curr;
+        dummyHead = mHead;
+        curr = dummyHead;
+
+        while (first != null && second !=null){
+            if(first.getItem().compareTo(second.getItem()) <= 0){
+                curr.setmNext(first);
+                first = first.getmNext();
+            }else{
+                curr.setmNext(second);
+                second = second.getmNext();
+            }
+            curr = curr.getmNext();
+        }
+        curr.setmNext((first == null) ? second:first);
+        return dummyHead.getmNext();
+    }
+
+    private void mergeSort(Node<T> head){
+        Node<T> middle = this.getMiddle();
+        Node<T> sHalf = middle.getmNext();
+
+        middle.setmNext(null);
+
+
+    }
+    */
 
 }
 

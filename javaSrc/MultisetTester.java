@@ -175,10 +175,10 @@ public class MultisetTester
         BstMultiset<String> bstMultiset = new BstMultiset<>();
         SortedLinkedListMultiset<String> sortList = new SortedLinkedListMultiset<>();
         DataGenerator dataGenerator = new DataGenerator();
-        dataGenerator.addData(bstMultiset);
-        //dataGenerator.removeOneData(linkedList);
+        dataGenerator.addData(sortList);
+        //dataGenerator.searchData(bstMultiset);
         //dataGenerator.removeAllData(linkedList);
-        dataGenerator.searchData(bstMultiset);
+        //dataGenerator.searchData(bstMultiset);
         //dataGenerator.mergeTest(sortList);
 
 

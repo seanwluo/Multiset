@@ -4,11 +4,11 @@ import java.util.Random;
 
 public class DataGenerator {
     private ArrayList<String> data = new ArrayList<>();
-    private final int dataSize = 1000000;
-    private final int removeSize = 100;
+    private final int dataSize = 50000;
+    private final int removeSize = 25000;
     private final int addTime = 100;
     private final int removeTime = 100;
-    private final int searchTime = 20000;
+    private final int searchTime = 50000;
 
     private String getRandom(int length){
         String str = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
@@ -39,9 +39,9 @@ public class DataGenerator {
         long addDataEndTime = System.currentTimeMillis();
         System.out.println("Add Data Time:"+(addDataEndTime-addDataStartTime)+"ms");
 
-        long startTime = System.nanoTime();
+        long startTime = System.currentTimeMillis();
         this.textWriter(this.getData(),fileName);
-        long endTime = System.nanoTime();
+        long endTime = System.currentTimeMillis();
         System.out.println("TextFile Write time:"+(endTime-startTime)+"ms");
     }
 
@@ -103,7 +103,7 @@ public class DataGenerator {
         searchData.add(str);
        }
        //for(int t = 0;t<removeTime;t++){
-           this.removeOneData(multiset);
+
        //}
        long endTime = System.currentTimeMillis();
 
@@ -119,7 +119,7 @@ public class DataGenerator {
 
         ArrayList<String> removeData = new ArrayList<>();
 
-        long startTime = System.nanoTime();
+        long startTime = System.currentTimeMillis();
         for(int i = 0;i<dataSize;i++){
             int index = random.nextInt(1);
             if( "A".equals(command[index])){
@@ -145,8 +145,8 @@ public class DataGenerator {
                 }
             }
         }
-        long endTime = System.nanoTime();
-        System.out.println("Test time:"+(endTime-startTime)+"ns");
+        long endTime = System.currentTimeMillis();
+        System.out.println("Test time:"+(endTime-startTime)+"ms");
         this.textWriter(removeData,fileName);
     }
 
