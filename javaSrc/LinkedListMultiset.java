@@ -39,6 +39,33 @@ public class LinkedListMultiset<T extends Comparable<T>> extends Multiset<T>
 			currNode = currNode.getmNext();
 		}
 		return amount;
+		
+		/*
+	public int search(T item) {
+	    Node<T> node = mHead;
+	    int sum = 0;
+	    for(int i = 0;i < mLength;i++){
+	        if(node.getItem() == item){
+                sum++;
+            }
+            node = node.getmNext();
+        }
+
+		// Implement me!		
+		
+		// default return, please override when you implement this method
+		return sum;
+	} // 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * */
+		
+		
+		
+		
 		// default return, please override when you implement this method
 
 	} // end of add()

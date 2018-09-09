@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class DataGenerator {
     private ArrayList<String> data = new ArrayList<>();
-    private final int dataSize = 50000;
+    private final int dataSize = 5000;
     private final int removeSize = 25000;
     private final int addTime = 100;
     private final int removeTime = 100;
@@ -26,7 +26,7 @@ public class DataGenerator {
     }
 
     public void addData(Multiset<String> multiset) throws IOException {
-        final String fileName = "D:\\Multiset\\javaSrc\\AddFile.txt";
+        final String fileName = "AddFile.txt";
         long addDataStartTime = System.currentTimeMillis();
         while(this.getData().size() < dataSize){
             for(int i = 2;i < 6;i++){
@@ -46,7 +46,7 @@ public class DataGenerator {
     }
 
     public void removeOneData(Multiset<String> multiset) throws IOException {
-        final String fileName = "D:\\Multiset\\javaSrc\\RemoveFile.txt";
+        final String fileName = "RemoveFile.txt";
         ArrayList<String> removeData = new ArrayList<>();
 
         long startTime = System.currentTimeMillis();
@@ -67,7 +67,7 @@ public class DataGenerator {
     }
 
     public void removeAllData(Multiset<String> multiset) throws IOException {
-        final String fileName = "D:\\Multiset\\javaSrc\\RemoveAllFile.txt";
+        final String fileName = "RemoveAllFile.txt";
         ArrayList<String> removeAllData = new ArrayList<>();
 
         long startTime = System.nanoTime();
@@ -88,7 +88,7 @@ public class DataGenerator {
     }
 
     public void searchData(Multiset<String> multiset) throws IOException {
-        final String fileName = "D:\\Multiset\\javaSrc\\SearchFile.txt";
+        final String fileName = "SearchFile.txt";
         ArrayList<String> searchData = new ArrayList<>();
 
         long startTime = System.currentTimeMillis();
@@ -113,7 +113,7 @@ public class DataGenerator {
     }
 
     public void mergeTest(Multiset<String> multiset) throws IOException {
-        final String fileName = "D:\\Multiset\\javaSrc\\MergeTextFile.txt";
+        final String fileName = "MergeTextFile.txt";
         String[] command = {"A","R"};
         Random random = new Random();
 

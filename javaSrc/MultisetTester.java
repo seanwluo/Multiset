@@ -174,8 +174,11 @@ public class MultisetTester
         BalTreeMultiset<String> balTreeMultiset = new BalTreeMultiset<>();
         BstMultiset<String> bstMultiset = new BstMultiset<>();
         SortedLinkedListMultiset<String> sortList = new SortedLinkedListMultiset<>();
+        HashMultiset<String> hashlist= new HashMultiset<>();
+        BalTreeMultiset<String> ballist = new BalTreeMultiset<>();
+       
         DataGenerator dataGenerator = new DataGenerator();
-        dataGenerator.addData(sortList);
+        dataGenerator.addData(ballist);
         //dataGenerator.searchData(bstMultiset);
         //dataGenerator.removeAllData(linkedList);
         //dataGenerator.searchData(bstMultiset);
